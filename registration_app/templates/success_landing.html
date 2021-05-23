@@ -5,11 +5,24 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+     {% load static %}
+    <link rel="stylesheet" href="{% static styles.css %}">
     <title>Document</title>
 </head>
 <body>
+  {% if messages %}
+    {% for message in messages %}
+      {{ message.message }}
+    {% endfor %}
+  {% endif %}
     <h2>Success! </h2>
-    <h3> Welcome {{ logged_in_user.first_name }} <h3>
+    <h3> Welcome {{ request.session.first_name }} <h3>
+<!--    <h3> Welcome {{ logged_in.first_name }} <h3>-->
 
+    <form action="/logout" method="POST">
+        {% csrf_token %}
+    <!-- back to home login page -->
+        <a href="/">Log Out</a>
+    </form>
 </body>
 </html>

@@ -6,36 +6,42 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     {% load static %}
-    <link rel="stylesheet" href="{% static styles.css %}">
+    <link rel="stylesheet" href="{% static 'styles.css' %}{% now 'U' %}">
 
     <title>Document</title>
 </head>
 <body>
 
     {% if messages %}
-    <ul class="messages">
+    <ul class="messages" style="list-style: none;">
         {% for message in messages %}
             <li> {{ message }}</li>
         {% endfor %}
     </ul>
     {% endif %}
-    <form action="/registration" method="POST">
-        {% csrf_token %}
-        <h2>Registration</h2>
-        <label>First Name: <input type="text" name="first_name"> </label>
-        <label>Last Name: <input type="text" name="last_name"> </label>
-        <label>Email Address <input type="text" name="email"> </label>
-        <label>Password<input type="password" name="password"></label>
-        <label>Confirm Password<input type="password" name="confirm_password"></label>
-        <button>Register</button>
-    </form>
+<!--    this action is for urls -->
+    <div id="form_1">
+        <form action="/registration" method="POST">
+            {% csrf_token %}
+            <h2>Registration</h2>
+            <label>First Name: <input type="text" name="first_name"> </label>
+            <label>Last Name: <input type="text" name="last_name"> </label>
+            <label>Birthday: <input placeholder="YY/MM/DD" text" name="birthday"></label>
+            <label>Email Address <input type="text" name="email"> </label>
+            <label>Password<input type="password" name="password"></label>
+            <label>Confirm Password<input type="password" name="confirm_password"></label>
+            <button>Register</button>
+        </form>
+    </div>
 
-    <form action="/success" method="POST">
-        {% csrf_token %}
-        <h2>Login</h2>
-        <label>Email Address <input type="text" name="email"> </label>
-        <label>Password<input type="password" name="password"></label>
-        <button>Login</button>
-    </form>
+    <div id="form_2">
+        <form action="/success" method="POST">
+            {% csrf_token %}
+            <h2>Login</h2>
+            <label>Email Address <input type="text" name="email"> </label>
+            <label>Password<input type="password" name="password"></label>
+            <button>Login</button>
+        </form>
+    </div>
 </body>
 </html>

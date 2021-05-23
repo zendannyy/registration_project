@@ -1,8 +1,8 @@
 
-
-.messages li{
-    list-style-type: none;
-
+#ul.messages{
+.messages{
+    list-style: none;
+    text-align:left;
 }
 
 form{
