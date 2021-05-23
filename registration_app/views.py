@@ -4,7 +4,6 @@ from .models import *
 import bcrypt
 
 
-# Create your views here.
 def index(request):
 	if request == 'POST':
 		return redirect('/')
@@ -15,10 +14,7 @@ def index(request):
 def success(request):
 	"""GET request
 	"""
-	# tried doing if == 'POST'
-	# context = {
-	# 	'logged_in_user': Registration.objects.get(id=request.session['user_id'])
-	# }
+
 	if request.session['user_id']:
 		return render(request, 'success_landing.html',
 					  {"user": Registration.objects.get(
@@ -53,7 +49,6 @@ def login(request):
 		users_with_email = Registration.objects.filter(
 			email=request.POST['email'])
 		# truthy statement, list with items will be true
-		print('Above if')
 		if users_with_email:
 			logged_in = users_with_email[0]
 			# if password hash inputted = password hash in db # tried .encode('utf-8')
